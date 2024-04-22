@@ -1,4 +1,4 @@
-INSERT INTO tarea_01.CASINO (id_casino, nombre_casino, direccion_casino) 
+INSERT INTO CASINO (id_casino, nombre_casino, direccion_casino)
 VALUES ('1', 'Bellagio', '3600 S Las Vegas Blvd, Las Vegas, NV 89109'),
        ('2', 'Venetian', '3355 S Las Vegas Blvd, Las Vegas, NV 89109'),
        ('3', 'Caesars Palace', '3570 S Las Vegas Blvd, Las Vegas, NV 89109'),
@@ -8,7 +8,7 @@ VALUES ('1', 'Bellagio', '3600 S Las Vegas Blvd, Las Vegas, NV 89109'),
        ('7', 'The Mirage', '3400 S Las Vegas Blvd, Las Vegas, NV 89109'),
        ('8', 'Aria Resort & Casino', '3730 S Las Vegas Blvd, Las Vegas, NV 89158');
 
-INSERT INTO tarea_01.DIRECTOR (nombre_director, apellido_director, rut_director, id_casino)
+INSERT INTO DIRECTOR (nombre_director, apellido_director, rut_director, id_casino)
 VALUES ('Juan', 'Martinez', '12345678-9', '1'),
        ('Maria', 'Gonzalez', '98765432-1', '2'),
        ('Pedro', 'Lopez', '56789123-4', '3'),
@@ -18,7 +18,7 @@ VALUES ('Juan', 'Martinez', '12345678-9', '1'),
        ('Roberto', 'Diaz', '45678912-3', '7'),
        ('Laura', 'Hernandez', '89123456-7', '8');
 
-INSERT INTO tarea_01.JUGADOR (rut_jugador, correo_jugador, apodo_jugador, id_pro)
+INSERT INTO JUGADOR (rut_jugador, correo_jugador, apodo_jugador, id_pro)
 VALUES ('11111111-1', 'jugador1@example.cl', 'El Trampas', '15'),
        ('22222222-2', 'jugador2@example.cl', 'PlayerDos', NULL),
        ('33333333-3', 'jugador3@example.com', 'PlayerTres', '2'),
@@ -31,7 +31,7 @@ VALUES ('11111111-1', 'jugador1@example.cl', 'El Trampas', '15'),
        ('209999-9', 'jugador11@example.cl', 'PlayerOnce', NULL),
        ('99999999-9', 'jugador9@example.com', 'PlayerNueve', NULL);
 
-INSERT INTO tarea_01.CUENTA (id_cuenta, rut_jugador)
+INSERT INTO CUENTA (id_cuenta, rut_jugador)
 VALUES ('1', '11111111-1'),
        ('2', '22222222-2'),
        ('3', '33333333-3'),
@@ -42,7 +42,7 @@ VALUES ('1', '11111111-1'),
        ('8', '88888888-8');
 
 -- Transacciones para la cuenta 1
-INSERT INTO tarea_01.TRANSACCION (monto_transaccion, nro_transaccion, fecha_transaccion, id_cuenta)
+INSERT INTO TRANSACCION (monto_transaccion, nro_transaccion, fecha_transaccion, id_cuenta)
 VALUES (100.00, 1, '2024-04-21', '1'),
        (150.00, 2, '2024-04-20', '1'),
        (200.00, 3, '2024-04-19', '1'),
@@ -53,7 +53,7 @@ VALUES (100.00, 1, '2024-04-21', '1'),
        (90.00, 8, '2024-04-14', '1');
 
 -- Transacciones para la cuenta 2
-INSERT INTO tarea_01.TRANSACCION (monto_transaccion, nro_transaccion, fecha_transaccion, id_cuenta)
+INSERT INTO TRANSACCION (monto_transaccion, nro_transaccion, fecha_transaccion, id_cuenta)
 VALUES (200.00, 1, '2024-04-21', '2'),
        (250.00, 2, '2024-04-20', '2'),
        (300.00, 3, '2024-04-19', '2'),
@@ -63,7 +63,7 @@ VALUES (200.00, 1, '2024-04-21', '2'),
        (180.00, 7, '2024-04-15', '2'),
        (190.00, 8, '2024-04-14', '2');
 
-INSERT INTO tarea_01.JUEGO (nombre_juego)
+INSERT INTO JUEGO (nombre_juego)
 VALUES ('Blackjack'),
        ('Ruleta'),
        ('Póker'),
@@ -79,10 +79,11 @@ VALUES ('Blackjack'),
        ('Sic Bo'),
        ('Bola 8'),
        ('Dominó'),
+       ('roamoneas 777'),
        ('Tute');
 
 -- Juegos sin crupier
-INSERT INTO tarea_01.SIN_CRUPIER (nombre_juego, dinero_actual, jackpot)
+INSERT INTO SIN_CRUPIER (nombre_juego, dinero_actual, jackpot)
 VALUES ('Máquinas tragamonedas', 5000.00, 1000.00),
        ('Bingo', 3000.00, 500.00),
        ('Keno', 2000.00, 300.00),
@@ -90,10 +91,10 @@ VALUES ('Máquinas tragamonedas', 5000.00, 1000.00),
        ('Sic Bo', 2500.00, 400.00),
        ('Bola 8', 3500.00, 600.00),
        ('Dominó', 1500.00, 200.00),
-       ('roamoneas 777', 1500.00, 20000.00),
+       ('roamoneas 777',5000,5000),
        ('Tute', 1000.00, 100.00);
 
-INSERT INTO tarea_01.CRUPIER (fecha_ingreso_crupier, apodo_crupier, rut_crupier)
+INSERT INTO CRUPIER (fecha_ingreso_crupier, apodo_crupier, rut_crupier)
 VALUES ('2023-01-01', 'CrupierUno', '11148481-1'),
        ('2023-02-01', 'CrupierDos', '22492222-2'),
        ('2023-03-01', 'CrupierTres', '33333337-3'),
@@ -106,7 +107,7 @@ VALUES ('2023-01-01', 'CrupierUno', '11148481-1'),
 
 -- Juegos con crupier
 
-INSERT INTO tarea_01.CON_CRUPIER (nombre_juego, rut_crupier)
+INSERT INTO CON_CRUPIER (nombre_juego, rut_crupier)
 VALUES ('Blackjack', '11148481-1'),
        ('Ruleta', '22492222-2'),
        ('Póker', '33333337-3'),
@@ -117,11 +118,11 @@ VALUES ('Blackjack', '11148481-1'),
        ('Dado', '88882988-8');
 
 
-INSERT INTO tarea_01.HOTEL (id_casino)
+INSERT INTO HOTEL (id_casino)
 VALUES ('1'), ('2'), ('3'), ('4'), ('5'), ('6'), ('7'), ('8');
 
 
-INSERT INTO tarea_01.REGISTRO (numero_habitacion, fecha_ingreso, fecha_salida, id_casino, rut_jugador)
+INSERT INTO REGISTRO (numero_habitacion, fecha_ingreso, fecha_salida, id_casino, rut_jugador)
 VALUES
 (101, '2024-04-22', '2024-04-24', '1', '11111111-1'),
 (102, '2024-04-22', '2024-04-24', '2', '22222222-2'),
@@ -133,11 +134,11 @@ VALUES
 (108, '2024-04-22', '2024-04-24', '8', '88888888-8');
 
 
-INSERT INTO tarea_01.HABITACION (nro_camas, numero_habitacion, id_casino)
+INSERT INTO HABITACION (nro_camas, numero_habitacion, id_casino)
 SELECT FLOOR(RAND() * 4) + 1, numero_habitacion, id_casino
-FROM tarea_01.REGISTRO;
+FROM REGISTRO;
 
-INSERT INTO tarea_01.CAMARA (fecha_creacion, ubicacion, id_casino)
+INSERT INTO CAMARA (fecha_creacion, ubicacion, id_casino)
 VALUES
     ('2024-04-20', 'Sala VIP1', '2'),
     ('2024-04-21', 'Sala Principal1', '1'),
@@ -148,7 +149,7 @@ VALUES
     ('2024-04-26', 'Sala Principal7', '7'),
     ('2024-04-27', 'Sala VIP8', '8');
 
-INSERT INTO tarea_01.TRAMPA (fecha_trampa, link_video, tipo_trampa, ubicacion, id_casino, rut_jugador)
+INSERT INTO TRAMPA (fecha_trampa, link_video, tipo_trampa, ubicacion, id_casino, rut_jugador)
 VALUES
     ('2024-04-20', 'https://www.youtube.com/watch?v=video1', 'hacer señas', 'Sala VIP1', '2', '11111111-1'),
     ('2024-04-21', 'https://www.youtube.com/watch?v=video2', 'colaboración con crupier', 'Sala Principal1', '1', '22222222-2'),
@@ -162,7 +163,7 @@ VALUES
     ('2024-04-27', 'https://www.youtube.com/watch?v=video785', 'contar cartas', 'Sala VIP8', '8', '209999-9');
 
 
-INSERT INTO tarea_01.trabajan (id_casino, rut_crupier)
+INSERT INTO trabajan (id_casino, rut_crupier)
 VALUES
 ('1', '11148481-1'),
 ('2', '22492222-2'),
@@ -173,7 +174,7 @@ VALUES
 ('7', '77797777-7'),
 ('8', '88882988-8');
 
-INSERT INTO tarea_01.RESTAURANT (nombre_restaurant, tipo_comida, estrellas, id_casino)
+INSERT INTO RESTAURANT (nombre_restaurant, tipo_comida, estrellas, id_casino)
 VALUES
     ('Las Delicias', 'Comida mexicana', 1, '1'),
     ('La Trattoria', 'Comida italiana', 3, '2'),
@@ -184,7 +185,7 @@ VALUES
     ('Sushi Roll', 'Sushi', 2, '7'),
     ('Bistró Francés', 'Comida francesa', 0, '8');
 
-INSERT INTO tarea_01.tiene (id_casino, rut_jugador)
+INSERT INTO tiene (id_casino, rut_jugador)
 VALUES
 ('1', '11111111-1'),
 ('2', '22222222-2'),
@@ -196,7 +197,7 @@ VALUES
 ('8', '88888888-8');
 
 
-INSERT INTO tarea_01.torneo (nombre_torneo, fecha_torneo, cantidad_jugadores, premio, rango, ganador_torneo, nombre_juego)
+INSERT INTO torneo (nombre_torneo, fecha_torneo, cantidad_jugadores, premio, rango, ganador_torneo, nombre_juego)
 VALUES
 ('Torneo de Invierno', '2024-01-15', 60, 1200.00, 'Intermedio', '1', 'Blackjack'),
 ('Torneo de Verano', '2024-06-20', 80, 1500.00, 'Avanzado', '2', 'Ruleta'),
@@ -211,7 +212,7 @@ VALUES
 ('Torneo del Día del Trabajo', '2023-05-01', 85, 1600.00, 'maestro', '99999999-9', 'Dado');
 
 
-INSERT INTO tarea_01.tiene_juego (id_casino, nombre_juego)
+INSERT INTO tiene_juego (id_casino, nombre_juego)
 VALUES
 ('1', 'Blackjack'),
 ('2', 'Ruleta'),
@@ -222,7 +223,7 @@ VALUES
 ('7', 'Texas Holdem'),
 ('8', 'Dado');
 
-INSERT INTO tarea_01.instancia (fecha_instancia, beneficiado, nombre_torneo)
+INSERT INTO instancia (fecha_instancia, beneficiado, nombre_torneo)
 VALUES
 ('2024-01-01', '11111111-1', 'Torneo de Invierno'),
 ('2024-01-02', '22222222-2', 'Torneo de Verano'),
@@ -240,21 +241,21 @@ VALUES
 ('2024-01-14', '66666666-6', 'Torneo de Halloween'),
 ('2024-01-15', '77777777-7', 'Torneo de San Valentín'),
 ('2024-01-16', '88888888-8', 'Torneo del Día del Trabajo'),
-('2024-01-17', '11111111-1' 'Torneo de Invierno'),
+('2024-01-17', '11111111-1', 'Torneo de Invierno'),
 ('2024-01-18', '22222222-2', 'Torneo de Verano'),
 ('2024-01-19', '33333333-3', 'Torneo de Primavera'),
 ('2024-01-20', '44444444-4', 'Torneo de Otoño');
 
 
-INSERT INTO tarea_01.participan (rut_jugador, nombre_torneo)
+INSERT INTO participan (rut_jugador, nombre_torneo, fecha_torneo, nombre_juego )
 VALUES
-('11111111-1', 'Torneo de Invierno'),
-('11111111-1', 'Torneo de Verano'),
-('22222222-2', 'Torneo de Verano'),
-('33333333-3', 'Torneo de Primavera'),
-('33333333-3', 'Gran Torneo de Navidad'),
-('44444444-4', 'Torneo de Otoño'),
-('55555555-5', 'Gran Torneo de Navidad'),
-('66666666-6', 'Torneo de Halloween'),
-('77777777-7', 'Torneo de San Valentín'),
-('88888888-8', 'Torneo del Día del Trabajo');
+('11111111-1', 'Torneo de Invierno', '2024-01-15', 'Blackjack'),
+('11111111-1', 'Torneo de Verano', '2024-06-20', 'Ruleta'),
+('22222222-2', 'Torneo de Verano', '2024-06-20', 'Ruleta'),
+('33333333-3', 'Torneo de Primavera', '2024-04-10', 'Póker'),
+('33333333-3', 'Gran Torneo de Navidad', '2024-12-20', 'Craps'),
+('44444444-4', 'Torneo de Otoño', '2024-09-25', 'Baccarat'),
+('55555555-5', 'Gran Torneo de Navidad', '2024-12-20', 'Craps'),
+('66666666-6', 'Torneo de Halloween', '2024-10-31', 'Punto y banca'),
+('77777777-7', 'Torneo de San Valentín', '2024-02-14', 'Texas Holdem'),
+('88888888-8', 'Torneo del Día del Trabajo', '2024-05-01', 'Dado');

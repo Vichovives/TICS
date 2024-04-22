@@ -8,8 +8,14 @@ ORDER BY J.rut_jugador DESC;
 SELECT tipo_trampa, COUNT(*) AS cantidad
 FROM TRAMPA
 GROUP BY tipo_trampa
-ORDER BY COUNT(*) DESC
-LIMIT 1;
+HAVING COUNT(*) = (
+    SELECT COUNT(*)
+    FROM TRAMPA
+    GROUP BY tipo_trampa
+    ORDER BY COUNT(*) DESC
+    LIMIT 1
+);
+
 
 -- CONSULTA 03
 SELECT MAX(monto_transaccion) AS transaccion_mas_alta
@@ -93,20 +99,19 @@ WHERE TotalEstrellasPorCasino.total_estrellas = (
 SELECT
     MIN(premio) AS premio_mas_bajo,
     MIN(monto_transaccion) AS transaccion_mas_baja,
-    MIN(dinero_actual) AS jackpot_mas_bajo,
+    MIN(jackpot) AS jackpot_mas_bajo,
     MAX(premio) AS premio_mas_alto,
     MAX(monto_transaccion) AS transaccion_mas_alta,
-    MAX(dinero_actual) AS jackpot_mas_alto
+    MAX(jackpot) AS jackpot_mas_alto
 FROM
     TORNEO, TRANSACCION, SIN_CRUPIER;
 
 -- CONSULTA 11
 SELECT
     (SELECT COUNT(*)
-     FROM participan P
-     JOIN TORNEO T ON P.nombre_torneo = T.nombre_torneo
-     WHERE T.fecha_torneo BETWEEN '2024-01-01' AND '2024-12-31'
-     AND T.rango LIKE '%masters%')
+     FROM torneo
+     WHERE fecha_torneo BETWEEN '2024-01-01' AND '2024-12-31'
+     AND rango LIKE '%masters%')
      /
     (SELECT COUNT(*)
      FROM JUGADOR
@@ -145,14 +150,13 @@ WITH MaxInstanciasJugador AS (
     SELECT beneficiado AS rut_jugador, COUNT(*) AS cantidad_instancias
     FROM INSTANCIA
     GROUP BY beneficiado
-    ORDER BY COUNT(*) DESC
-    LIMIT 1
 )
-SELECT C.rut_jugador, SUM(T.monto_transaccion) AS suma_transacciones
-FROM TRANSACCION T
-JOIN CUENTA C ON T.id_cuenta = C.id_cuenta
-JOIN MaxInstanciasJugador MIJ ON C.rut_jugador = MIJ.rut_jugador
-GROUP BY C.rut_jugador;
+SELECT MIJ.rut_jugador, MIJ.cantidad_instancias, SUM(T.monto_transaccion) AS suma_transacciones
+FROM MaxInstanciasJugador MIJ
+JOIN CUENTA C ON MIJ.rut_jugador = C.rut_jugador
+JOIN TRANSACCION T ON C.id_cuenta = T.id_cuenta
+GROUP BY MIJ.rut_jugador, MIJ.cantidad_instancias;
+
 
 -- CONSULTA 14
 SELECT tipo_comida, SUM(estrellas) AS suma_estrellas
@@ -164,8 +168,12 @@ ORDER BY suma_estrellas ASC;
 SELECT C.rut_jugador, T.monto_transaccion
 FROM TRANSACCION T
 JOIN CUENTA C ON T.id_cuenta = C.id_cuenta
-JOIN REGISTRO R ON C.rut_jugador = R.rut_jugador
-ORDER BY R.fecha_ingreso DESC
-LIMIT 1;
+JOIN (
+    SELECT rut_jugador
+    FROM REGISTRO
+    ORDER BY fecha_ingreso DESC
+    LIMIT 1
+) AS R ON C.rut_jugador = R.rut_jugador;
+
 
 

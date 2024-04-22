@@ -177,14 +177,19 @@ CREATE TABLE TORNEO
   FOREIGN KEY (nombre_juego) REFERENCES CON_CRUPIER(nombre_juego)
 );
 
+ALTER TABLE TORNEO
+ADD INDEX idx_torneo (nombre_torneo, fecha_torneo, nombre_juego);
+
 
 CREATE TABLE participan
 (
   rut_jugador VARCHAR(64) NOT NULL,
   nombre_torneo VARCHAR(64) NOT NULL,
-  PRIMARY KEY (rut_jugador, nombre_torneo),
+  fecha_torneo DATE NOT NULL,
+  nombre_juego VARCHAR(64) NOT NULL,
+  PRIMARY KEY (rut_jugador, nombre_torneo, fecha_torneo, nombre_juego),
   FOREIGN KEY (rut_jugador) REFERENCES JUGADOR(rut_jugador),
-  FOREIGN KEY (nombre_torneo) REFERENCES TORNEO(nombre_torneo)
+  FOREIGN KEY (nombre_torneo, fecha_torneo, nombre_juego) REFERENCES TORNEO(nombre_torneo, fecha_torneo, nombre_juego)
 );
 
 CREATE TABLE INSTANCIA
