@@ -19,14 +19,17 @@ VALUES ('Juan', 'Martinez', '12345678-9', '1'),
        ('Laura', 'Hernandez', '89123456-7', '8');
 
 INSERT INTO tarea_01.JUGADOR (rut_jugador, correo_jugador, apodo_jugador, id_pro)
-VALUES ('11111111-1', 'jugador1@example.com', 'PlayerUno', '1'),
-       ('22222222-2', 'jugador2@example.com', 'PlayerDos', '2'),
-       ('33333333-3', 'jugador3@example.com', 'PlayerTres', '3'),
-       ('44444444-4', 'jugador4@example.com', 'PlayerCuatro', '4'),
+VALUES ('11111111-1', 'jugador1@example.cl', 'El Trampas', '15'),
+       ('22222222-2', 'jugador2@example.cl', 'PlayerDos', NULL),
+       ('33333333-3', 'jugador3@example.com', 'PlayerTres', '2'),
+       ('44444444-4', 'jugador4@example.com', 'PlayerCuatro', '68'),
        ('55555555-5', 'jugador5@example.com', 'PlayerCinco', '5'),
-       ('66666666-6', 'jugador6@example.com', 'PlayerSeis', '6'),
-       ('77777777-7', 'jugador7@example.com', 'PlayerSiete', '7'),
-       ('88888888-8', 'jugador8@example.com', 'PlayerOcho', '8');
+       ('66666666-6', 'jugador6@example.com', 'PlayerSeis', NULL),
+       ('77777777-7', 'jugador7@example.com', 'PlayerSiete', '79'),
+       ('88888888-8', 'jugador8@example.com', 'PlayerOcho', '31'),
+       ('208788-9', 'jugador10@example.cl', 'PlayerDiez', '11'),
+       ('209999-9', 'jugador11@example.cl', 'PlayerOnce', NULL),
+       ('99999999-9', 'jugador9@example.com', 'PlayerNueve', NULL);
 
 INSERT INTO tarea_01.CUENTA (id_cuenta, rut_jugador)
 VALUES ('1', '11111111-1'),
@@ -87,6 +90,7 @@ VALUES ('Máquinas tragamonedas', 5000.00, 1000.00),
        ('Sic Bo', 2500.00, 400.00),
        ('Bola 8', 3500.00, 600.00),
        ('Dominó', 1500.00, 200.00),
+       ('roamoneas 777', 1500.00, 20000.00),
        ('Tute', 1000.00, 100.00);
 
 INSERT INTO tarea_01.CRUPIER (fecha_ingreso_crupier, apodo_crupier, rut_crupier)
@@ -150,10 +154,12 @@ VALUES
     ('2024-04-21', 'https://www.youtube.com/watch?v=video2', 'colaboración con crupier', 'Sala Principal1', '1', '22222222-2'),
     ('2024-04-22', 'https://www.youtube.com/watch?v=video3', 'contar cartas', 'Sala Principal2', '3', '33333333-3'),
     ('2024-04-23', 'https://www.youtube.com/watch?v=video4', 'marcar cartas', 'Sala VIP4', '4', '44444444-4'),
+    ('2023-04-23', 'https://www.youtube.com/watch?v=video79', 'marcar cartas', 'Sala VIP5', '5', '44444444-4'),
     ('2024-04-24', 'https://www.youtube.com/watch?v=video5', 'usar dispositivos electrónicos', 'Sala VIP5', '5', '55555555-5'),
     ('2024-04-25', 'https://www.youtube.com/watch?v=video6', 'alterar apuestas', 'Sala Principal6', '6', '66666666-6'),
     ('2024-04-26', 'https://www.youtube.com/watch?v=video7', 'ocultar fichas', 'Sala Principal7', '7', '77777777-7'),
-    ('2024-04-27', 'https://www.youtube.com/watch?v=video8', 'intercambio de fichas', 'Sala VIP8', '8', '88888888-8');
+    ('2024-04-27', 'https://www.youtube.com/watch?v=video8', 'intercambio de fichas', 'Sala VIP8', '8', '88888888-8'),
+    ('2024-04-27', 'https://www.youtube.com/watch?v=video785', 'contar cartas', 'Sala VIP8', '8', '209999-9');
 
 
 INSERT INTO tarea_01.trabajan (id_casino, rut_crupier)
@@ -189,3 +195,66 @@ VALUES
 ('7', '77777777-7'),
 ('8', '88888888-8');
 
+
+INSERT INTO tarea_01.torneo (nombre_torneo, fecha_torneo, cantidad_jugadores, premio, rango, ganador_torneo, nombre_juego)
+VALUES
+('Torneo de Invierno', '2024-01-15', 60, 1200.00, 'Intermedio', '1', 'Blackjack'),
+('Torneo de Verano', '2024-06-20', 80, 1500.00, 'Avanzado', '2', 'Ruleta'),
+('Torneo de Primavera', '2024-04-10', 70, 1300.00, 'Principiante', '3', 'Póker'),
+('Torneo de Primavera', '2005-04-10', 70, 1300.00, 'Principiante', '3', 'Póker'),
+('Torneo de Otoño', '2024-09-25', 90, 1800.00, 'Experto', '4', 'Baccarat'),
+('Gran Torneo de Navidad', '2024-12-20', 100, 2000.00, 'masters', '44444444-4', 'Craps'),
+('Torneo de Halloween', '2024-10-31', 75, 1400.00, 'Intermedio', '1', 'Punto y banca'),
+('Torneo de Halloween', '2003-10-31', 75, 1400.00, 'Intermedio', '1', 'Punto y banca'),
+('Torneo de San Valentín', '2024-02-14', 65, 1250.00, 'Principiante', '7', 'Texas Holdem'),
+('Torneo del Día del Trabajo', '2024-05-01', 85, 1600.00, 'Experto', '5', 'Dado'),
+('Torneo del Día del Trabajo', '2023-05-01', 85, 1600.00, 'maestro', '99999999-9', 'Dado');
+
+
+INSERT INTO tarea_01.tiene_juego (id_casino, nombre_juego)
+VALUES
+('1', 'Blackjack'),
+('2', 'Ruleta'),
+('3', 'Póker'),
+('4', 'Baccarat'),
+('5', 'Craps'),
+('6', 'Punto y banca'),
+('7', 'Texas Holdem'),
+('8', 'Dado');
+
+INSERT INTO tarea_01.instancia (fecha_instancia, beneficiado, nombre_torneo)
+VALUES
+('2024-01-01', '11111111-1', 'Torneo de Invierno'),
+('2024-01-02', '22222222-2', 'Torneo de Verano'),
+('2024-01-03', '33333333-3', 'Torneo de Primavera'),
+('2024-01-04', '44444444-4', 'Torneo de Otoño'),
+('2024-01-05', '55555555-5', 'Gran Torneo de Navidad'),
+('2024-01-06', '66666666-6', 'Torneo de Halloween'),
+('2024-01-07', '77777777-7', 'Torneo de San Valentín'),
+('2024-01-08', '88888888-8', 'Torneo del Día del Trabajo'),
+('2024-01-09', '11111111-1', 'Torneo de Invierno'),
+('2024-01-10', '22222222-2', 'Torneo de Verano'),
+('2024-01-11', '33333333-3', 'Torneo de Primavera'),
+('2024-01-12', '44444444-4', 'Torneo de Otoño'),
+('2024-01-13', '55555555-5', 'Gran Torneo de Navidad'),
+('2024-01-14', '66666666-6', 'Torneo de Halloween'),
+('2024-01-15', '77777777-7', 'Torneo de San Valentín'),
+('2024-01-16', '88888888-8', 'Torneo del Día del Trabajo'),
+('2024-01-17', '11111111-1' 'Torneo de Invierno'),
+('2024-01-18', '22222222-2', 'Torneo de Verano'),
+('2024-01-19', '33333333-3', 'Torneo de Primavera'),
+('2024-01-20', '44444444-4', 'Torneo de Otoño');
+
+
+INSERT INTO tarea_01.participan (rut_jugador, nombre_torneo)
+VALUES
+('11111111-1', 'Torneo de Invierno'),
+('11111111-1', 'Torneo de Verano'),
+('22222222-2', 'Torneo de Verano'),
+('33333333-3', 'Torneo de Primavera'),
+('33333333-3', 'Gran Torneo de Navidad'),
+('44444444-4', 'Torneo de Otoño'),
+('55555555-5', 'Gran Torneo de Navidad'),
+('66666666-6', 'Torneo de Halloween'),
+('77777777-7', 'Torneo de San Valentín'),
+('88888888-8', 'Torneo del Día del Trabajo');

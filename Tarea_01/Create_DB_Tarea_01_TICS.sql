@@ -21,7 +21,7 @@ CREATE TABLE JUGADOR
   rut_jugador VARCHAR(64) NOT NULL,
   correo_jugador VARCHAR(64) NOT NULL,
   apodo_jugador VARCHAR(64) NOT NULL,
-  id_pro VARCHAR(64) NOT NULL,
+  id_pro VARCHAR(64),
   PRIMARY KEY (rut_jugador)
 );
 
@@ -145,7 +145,7 @@ CREATE TABLE trabajan
   FOREIGN KEY (rut_crupier) REFERENCES CRUPIER(rut_crupier)
 );
 
-CREATE TABLE tiene
+CREATE TABLE tiene_juego
 (
   id_casino VARCHAR(64) NOT NULL,
   nombre_juego VARCHAR(64) NOT NULL,
@@ -153,6 +153,7 @@ CREATE TABLE tiene
   FOREIGN KEY (id_casino) REFERENCES CASINO(id_casino),
   FOREIGN KEY (nombre_juego) REFERENCES JUEGO(nombre_juego)
 );
+
 
 CREATE TABLE CON_CRUPIER
 (
@@ -163,7 +164,7 @@ CREATE TABLE CON_CRUPIER
   FOREIGN KEY (rut_crupier) REFERENCES CRUPIER(rut_crupier)
 );
 
-CREATE TABLE TORNEO
+CREATE TABLE TORNEO 
 (
   nombre_torneo VARCHAR(64) NOT NULL,
   fecha_torneo DATE NOT NULL,
@@ -172,20 +173,10 @@ CREATE TABLE TORNEO
   rango VARCHAR(64) NOT NULL,
   ganador_torneo VARCHAR(64) NOT NULL,
   nombre_juego VARCHAR(64) NOT NULL,
-  PRIMARY KEY (nombre_torneo),
-  FOREIGN KEY (nombre_juego) REFERENCES CON_CRUPIER(nombre_juego),
-  UNIQUE (fecha_torneo)
+  PRIMARY KEY (nombre_torneo, nombre_juego, fecha_torneo),
+  FOREIGN KEY (nombre_juego) REFERENCES CON_CRUPIER(nombre_juego)
 );
 
-CREATE TABLE INSTANCIA
-(
-  fecha_instancia DATE NOT NULL,
-  beneficiado VARCHAR(64) NOT NULL,
-  nombre_torneo VARCHAR(64) NOT NULL,
-  PRIMARY KEY (fecha_instancia, nombre_torneo),
-  FOREIGN KEY (nombre_torneo) REFERENCES TORNEO(nombre_torneo),
-  UNIQUE (beneficiado)
-);
 
 CREATE TABLE participan
 (
@@ -193,5 +184,14 @@ CREATE TABLE participan
   nombre_torneo VARCHAR(64) NOT NULL,
   PRIMARY KEY (rut_jugador, nombre_torneo),
   FOREIGN KEY (rut_jugador) REFERENCES JUGADOR(rut_jugador),
+  FOREIGN KEY (nombre_torneo) REFERENCES TORNEO(nombre_torneo)
+);
+
+CREATE TABLE INSTANCIA
+(
+  fecha_instancia DATE NOT NULL,
+  beneficiado VARCHAR(64) NOT NULL,
+  nombre_torneo VARCHAR(64) NOT NULL,
+  PRIMARY KEY (fecha_instancia, nombre_torneo, beneficiado),
   FOREIGN KEY (nombre_torneo) REFERENCES TORNEO(nombre_torneo)
 );
